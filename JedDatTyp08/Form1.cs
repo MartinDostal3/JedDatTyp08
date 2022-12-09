@@ -16,5 +16,49 @@ namespace JedDatTyp08
         {
             InitializeComponent();
         }
+
+        public static bool JePrvocislo(int x)
+        {
+            bool prvocilo = true;
+
+            if (x == 0)
+            {
+                prvocilo = false;
+            }
+            else if (x >= 3)
+            {
+                for (int i = 2; i <= x / 2 && prvocilo; i++)
+                {
+                    if (x % i == 0)
+                    {
+                        prvocilo = false;
+                    }
+                }
+            }
+            return prvocilo;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            bool obsahuje = false;
+            for (int i = 0; i < textBox1.Lines.Count(); i++)
+            {
+                int cislo = int.Parse(textBox1.Lines[i].ToString());
+                if (JePrvocislo(cislo) && !obsahuje)
+                {
+                    obsahuje = true;
+                }
+            }
+            if (obsahuje)
+            {
+                MessageBox.Show("Ano, obsahuje");
+            }
+            else
+            {
+                MessageBox.Show("Ne, neobsahuje");
+            }
+
+
+        }
     }
 }
